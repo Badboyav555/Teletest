@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Test Form</title>
+</head>
+<body style="font-family:Arial;background:#111;color:#fff;padding:20px">
+
+  <h2>Telegram Bot Test Form</h2>
+
+  <input id="name" placeholder="Your Name" style="width:100%;padding:10px"><br><br>
+  <textarea id="message" placeholder="Type anything..." style="width:100%;padding:10px"></textarea><br><br>
+
+  <button onclick="sendToTelegram()" style="padding:10px 20px">
+    Send
+  </button>
+
+<script>
+function sendToTelegram() {
+  const name = document.getElementById("name").value;
+  const msg = document.getElementById("message").value;
+
+  const BOT_TOKEN = "8390602758:AAGx5zvAB5j1OgCw27x_BqRc2Mz9cDtoymM";
+  const CHAT_ID = "8390602758";
+
+  const text = `🧪 Test Form Data\n\n👤 Name: ${name}\n💬 Message: ${msg}`;
+
+  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: text
+    })
+  }).then(() => {
+    alert("Sent to Telegram ✅");
+  });
+}
+</script>
+
+</body>
+</html>
